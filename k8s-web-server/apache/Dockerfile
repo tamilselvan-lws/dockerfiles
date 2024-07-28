@@ -3,8 +3,10 @@ FROM ubuntu:jammy
 
 # Set environment variables
 ENV TZ=Asia/Kolkata \
-    DEBIAN_FRONTEND=noninteractive \
-    PHP_VERSION=8.2 \
+    DEBIAN_FRONTEND=noninteractive 
+
+# Define PHP and Node.js versions
+ENV PHP_VERSION=8.2 \
     NODE_VERSION=20
 
 # Update package lists and install initial packages
