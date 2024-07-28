@@ -1,13 +1,11 @@
 # Use the official Ubuntu base image
 FROM ubuntu:jammy
 
-# Set build arguments for PHP and Node.js versions
-ARG PHP_VERSION=8.2
-ARG NODE_VERSION=20
-
 # Set environment variables
 ENV TZ=Asia/Kolkata \
-    DEBIAN_FRONTEND=noninteractive
+    DEBIAN_FRONTEND=noninteractive \
+    PHP_VERSION=8.2 \
+    NODE_VERSION=20
 
 # Update package lists and install initial packages
 RUN apt-get update && \
@@ -95,8 +93,9 @@ COPY start-services.sh /usr/local/bin/start-services.sh
 
 # Make the script executable
 RUN chmod +x /usr/local/bin/start-services.sh
+
 # Enable necessary Apache modules and configurations
-RUN a2enmod proxy_fcgi setenvif rewrite ssl && \
+RUN a2enmod proxy_fcgi setenvif rewrite && \
     a2enconf php${PHP_VERSION}-fpm && \
     service php${PHP_VERSION}-fpm restart && \
     service apache2 restart
@@ -107,8 +106,3 @@ EXPOSE 443
 
 # Start both Apache2 and PHP-FPM using the shell script
 CMD ["/usr/local/bin/start-services.sh"]
-
-
-# docker build --build-arg PHP_VERSION=8.2 --build-arg NODE_VERSION=20 -t your-image-name .
-
-
