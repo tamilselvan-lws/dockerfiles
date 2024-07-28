@@ -14,12 +14,15 @@ RUN apt-get update && \
     apt-get install -y \
     tzdata \
     software-properties-common \
+    ca-certificates \
     git \
     wget \
     curl \
     unzip \
     nano \
-    zip && \
+    zip \
+    supervisor && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Add PPA repositories for Apache2 and PHP

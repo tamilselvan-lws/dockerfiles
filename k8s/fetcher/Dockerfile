@@ -12,7 +12,6 @@ RUN apt-get update && \
     curl \
     unzip \
     ca-certificates && \
-    # Clean up to reduce image size
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
