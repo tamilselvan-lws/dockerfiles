@@ -95,9 +95,9 @@ COPY start-services.sh /usr/local/bin/start-services.sh
 RUN chmod +x /usr/local/bin/start-services.sh
 
 # Enable necessary Apache modules and configurations
-RUN a2enmod proxy_fcgi setenvif rewrite ssl headers && \
+RUN a2enmod proxy_fcgi setenvif rewrite headers && \
     a2enconf php${PHP_VERSION}-fpm
-RUN rm /etc/apache2/sites-available/default-ssl.conf
+
 RUN service php${PHP_VERSION}-fpm restart && \
     service apache2 restart
 
