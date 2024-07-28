@@ -23,11 +23,11 @@ RUN apt-get update && \
     zip && \
     rm -rf /var/lib/apt/lists/*
     
-# Add PPA repositories for Apache2 and PHP
+# Add PPA repositories for OpenLiteSpeed and PHP
 RUN wget -O - http://rpms.litespeedtech.com/debian/enable_lst_debian_repo.sh | bash && \
     apt-get update
     
-# Install Apache2
+# Install OpenLiteSpeed
 RUN apt-get install -y openlitespeed
 
 # Install PHP and necessary extensions
